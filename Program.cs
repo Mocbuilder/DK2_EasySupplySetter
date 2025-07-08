@@ -66,6 +66,9 @@ namespace DK2_EasySupplySetter
                     File.WriteAllLines(file, lines);
                     Console.WriteLine($"Updated supply values in: {file}");
                 }
+
+                Console.Read();
+                Console.Clear();
             }
         }
     }
