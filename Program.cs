@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 
 namespace DK2_EasySupplySetter
 {
@@ -6,6 +7,11 @@ namespace DK2_EasySupplySetter
     {
         public static bool createLog = false;
         public static string logDir = Directory.GetCurrentDirectory() + "\\DK2 EasySupplySetter Logs\\";
+
+        public static void Main()
+        {
+            Console.WriteLine("This executable on its own doesnt do anything anymore, please use the UI version.");
+        }
 
         public static void SetSupply(string dir, int newSupply)
         {

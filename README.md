@@ -2,11 +2,34 @@
 A simple and easy to use program to change the supply values for modded units in Door Kickers 2.
 
 ### How to use
-The program is portable, so no installation is needed. Just drop it in your DK2 Workshop folder and run it.
+#### 1. Unpack Files
+Create a new Folder (something like ESS or similar), drop the files into it and run it.
+If you create it directly in your Steam Workshop folder, it will automatically find the Workshop folder and you can skip Step 2.
 The Workshop folder is found in your Steam Library Folder under *\steamapps\workshop\content\1239080*
 
-It will ask which value to use, and once you confirm it changes all supply values for all units that you downloaded from the Steam Workshop.
-It also shows you all the files that it modifies.
+#### 2. Find Workshop Folder
+Click "Find Folder" and navigate to your Door Kickers 2 Workshop folder.
+The Workshop folder is found in your Steam Library Folder under *\steamapps\workshop\content\1239080*
+
+#### 3. New Supply Value
+Enter the new supply value you want to set for your modded units into the text box.
+For an explanation of what supply is, see below.
+
+#### 4. Settings (Optional)
+This step is optional.
+If you click the little cogwheel icon, you can change the following settings:
+- Create Log and Set Folder:
+	If checked, a log file will be created in the specified folder.
+
+- Save Settings:
+	If checked, the settings will be saved to a file and loaded next time you run the program.
+
+- Open Folder:
+	Opens the folder where the settings are saved.
+
+#### 5. Confirm
+Click "Set Supply" to set the supply value for all modded units in your Workshop folder.
+If everythign worked out, you will get a confirmation Message.
 
 ### What is supply in Door Kickers 2?
 Supply in DK2 determines how many of the little round icons in the top right corner of the deployment screen one of you soldiers takes.
