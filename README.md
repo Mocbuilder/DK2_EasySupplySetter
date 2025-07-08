@@ -1,3 +1,8 @@
+> [!CAUTION]
+> # ARCHIVE NOTICE
+> ### This is an archive of the v1.0.0 version. This version doesnt get updated, but if you want a console-based version or just dont like UI of any kind, then this version is for you.
+
+
 # DK2 EasySupplySetter v1.0.0
 A simple and easy to use program to change the supply values for modded units in Door Kickers 2.
 
