@@ -62,9 +62,6 @@ namespace DK2_EasySupplySetter
                         writer.WriteLine($"Log finished.");
                     }
                 }
-
-                Console.Read();
-                Console.Clear();
             }
         }
     }
