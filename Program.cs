@@ -2,45 +2,14 @@
 
 namespace DK2_EasySupplySetter
 {
-    internal class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static bool createLog = false;
+        public static string logDir = Directory.GetCurrentDirectory() + "\\DK2 EasySupplySetter Logs\\";
+
+        public static void SetSupply(string dir, int newSupply)
         {
-            string dir = Directory.GetCurrentDirectory();
-
-            int newSupply = 1;
-            Console.WriteLine("Enter the new supply value (press enter for default 1): ");
-            string input = Console.ReadLine();
-
-            switch (input)
-            {
-                case "":
-                    break;
-                default:
-                    if (int.TryParse(input, out int parsedValue))
-                    {
-                        newSupply = parsedValue;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid input. Using default supply value of 1.");
-                    }
-                    break;
-            }
-
-            string confirmInput;
-            Console.WriteLine($"Confirm changing all supply to {newSupply} (y/n)?");
-            confirmInput = Console.ReadLine()?.ToLower();
-
-            switch (confirmInput)
-            {
-                case "n":
-                    Console.WriteLine("Operation cancelled.");
-                    return;
-                case "y":
-                    Console.WriteLine($"Changing all supply to {newSupply}...");
-                    break;
-            }
+            List<string> filesChanged = new List<string>();
 
             foreach (string file in Directory.GetFiles(dir, "*unit*.xml", SearchOption.AllDirectories))
             {
@@ -64,7 +33,34 @@ namespace DK2_EasySupplySetter
                 if (fileChanged)
                 {
                     File.WriteAllLines(file, lines);
-                    Console.WriteLine($"Updated supply values in: {file}");
+                    if (createLog)
+                    {
+                        filesChanged.Add(file);
+                    }
+                }
+
+                if (createLog)
+                {
+                    if (!Directory.Exists(logDir))
+                    {
+                        Directory.CreateDirectory(logDir);
+                    }
+
+                    string settingsFilePath = Path.Combine(logDir, $"DK2_ESS_Log_{DateTime.Now}");
+                    using (StreamWriter writer = new StreamWriter(settingsFilePath))
+                    {
+                        writer.WriteLine($"[Door Kickers 2 EasySupplySetter]");
+                        writer.WriteLine($"[Made by Mocbuilder]");
+                        writer.WriteLine($"[More: https://github.com/Mocbuilder/DK2_EasySupplySetter]");
+                        writer.WriteLine($"Log created at: {DateTime.Now}");
+                        writer.WriteLine($"New supply value: {newSupply}");
+                        foreach (string changedFile in filesChanged)
+                        {
+                            writer.WriteLine($"File changed: {changedFile}");
+                        }
+                        writer.WriteLine($"Total files changed: {filesChanged.Count}");
+                        writer.WriteLine($"Log finished.");
+                    }
                 }
 
                 Console.Read();

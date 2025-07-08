@@ -5,6 +5,8 @@ VisualStudioVersion = 17.13.35731.43 d17.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DK2_EasySupplySetter", "DK2_EasySupplySetter.csproj", "{865D3BB9-5A3E-4162-B515-5699174874F4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DK2_ESS_UI", "..\DK2_ESS_UI\DK2_ESS_UI.csproj", "{96FBE954-86D0-4953-8755-401DAD254BE5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{865D3BB9-5A3E-4162-B515-5699174874F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{865D3BB9-5A3E-4162-B515-5699174874F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{865D3BB9-5A3E-4162-B515-5699174874F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96FBE954-86D0-4953-8755-401DAD254BE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96FBE954-86D0-4953-8755-401DAD254BE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96FBE954-86D0-4953-8755-401DAD254BE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96FBE954-86D0-4953-8755-401DAD254BE5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
