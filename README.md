@@ -1,4 +1,4 @@
-# DK2_EasySupplySetter
+# DK2 EasySupplySetter v1.0.0
 A simple and easy to use program to change the supply values for modded units in Door Kickers 2.
 
 ### How to use
