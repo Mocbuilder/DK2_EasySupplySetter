@@ -2,6 +2,8 @@
 A simple and easy to use program to change the supply values for modded units in Door Kickers 2.
 Now even with a GUI!
 
+You can also find this program on [Nexusmods](https://www.nexusmods.com/doorkickers2/mods/376).
+
 ### How to use
 #### 1. Unpack Files
 Create a new Folder (something like ESS or similar), drop the files into it and run it.
