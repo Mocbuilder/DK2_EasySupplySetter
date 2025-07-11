@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DK2_ESS_UI_NEW
 {
-    public class Temp_program
+    public class SupplySetter
     {
         public static bool createLog = false;
         public static string logDir = Directory.GetCurrentDirectory() + "\\DK2 EasySupplySetter Logs\\";

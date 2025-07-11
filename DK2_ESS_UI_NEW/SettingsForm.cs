@@ -38,8 +38,8 @@ namespace DK2_ESS_UI
                 writer.WriteLine($"[Door Kickers 2 EasySupplySetter]");
                 writer.WriteLine($"[Made by Mocbuilder]");
                 writer.WriteLine($"[More: https://github.com/Mocbuilder/Temp_program]");
-                writer.WriteLine($"createLog={Temp_program.createLog}");
-                writer.WriteLine($"logDir={Temp_program.logDir}");
+                writer.WriteLine($"createLog={SupplySetter.createLog}");
+                writer.WriteLine($"logDir={SupplySetter.logDir}");
             }
         }
 
@@ -55,12 +55,12 @@ namespace DK2_ESS_UI
                     {
                         if (line.StartsWith("createLog="))
                         {
-                            Temp_program.createLog = bool.Parse(line.Split('=')[1]);
-                            createLog_checkBox.Checked = Temp_program.createLog;
+                            SupplySetter.createLog = bool.Parse(line.Split('=')[1]);
+                            createLog_checkBox.Checked = SupplySetter.createLog;
                         }
                         else if (line.StartsWith("logDir="))
                         {
-                            Temp_program.logDir = line.Split('=')[1];
+                            SupplySetter.logDir = line.Split('=')[1];
                         }
                     }
                 }
@@ -70,7 +70,7 @@ namespace DK2_ESS_UI
                 return;
             }
 
-            createLog_checkBox.Checked = Temp_program.createLog;
+            createLog_checkBox.Checked = SupplySetter.createLog;
             saveSettings = false;
             saveSettings_checkBox.Checked = saveSettings;
             return;
@@ -101,18 +101,18 @@ namespace DK2_ESS_UI
 
         private void createLog_checkBox_CheckedChanged(object sender, EventArgs e)
         {
-            Temp_program.createLog = createLog_checkBox.Checked;
-            if (!Directory.Exists(Temp_program.logDir))
+            SupplySetter.createLog = createLog_checkBox.Checked;
+            if (!Directory.Exists(SupplySetter.logDir))
             {
-                Directory.CreateDirectory(Temp_program.logDir);
+                Directory.CreateDirectory(SupplySetter.logDir);
             }
         }
 
         private void logFolderSelect_roundedButton_Click(object sender, EventArgs e)
         {
-            settings_folderBrowserDialog.SelectedPath = Temp_program.logDir;
+            settings_folderBrowserDialog.SelectedPath = SupplySetter.logDir;
             dialogResult = settings_folderBrowserDialog.ShowDialog();
-            Temp_program.logDir = dialogResult == DialogResult.OK ? settings_folderBrowserDialog.SelectedPath : Temp_program.logDir;
+            SupplySetter.logDir = dialogResult == DialogResult.OK ? settings_folderBrowserDialog.SelectedPath : SupplySetter.logDir;
         }
 
         private void saveSettings_checkBox_CheckedChanged(object sender, EventArgs e)

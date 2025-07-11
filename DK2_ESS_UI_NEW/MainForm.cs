@@ -62,7 +62,7 @@ namespace DK2_ESS_UI
         private void confirm_roundedButton_Click(object sender, EventArgs e)
         {
 
-            Temp_program.SetSupply(modsFolderPath, int.Parse(newValue_textBox.Text));
+            SupplySetter.SetSupply(modsFolderPath, int.Parse(newValue_textBox.Text));
             MessageBox.Show("Supply values set successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
