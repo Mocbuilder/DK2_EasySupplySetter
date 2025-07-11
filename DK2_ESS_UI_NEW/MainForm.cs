@@ -9,6 +9,7 @@ namespace DK2_ESS_UI
 
         public static string modsFolderPath;
         DialogResult dialogResult;
+        SettingsForm settingsForm = new SettingsForm();
 
         public MainForm()
         {
@@ -17,6 +18,8 @@ namespace DK2_ESS_UI
             modsFolderPath = Directory.GetCurrentDirectory();
             DirectoryInfo dir = Directory.GetParent(modsFolderPath);
             modsFolderPath = dir.FullName;
+
+            settingsForm.ReadSettingFromFile();
             SetFolderFoundUI(CheckModsFolderPath());
         }
 
@@ -55,7 +58,6 @@ namespace DK2_ESS_UI
 
         private void settings_Button_Click(object sender, EventArgs e)
         {
-            SettingsForm settingsForm = new SettingsForm();
             settingsForm.ShowDialog();
         }
 

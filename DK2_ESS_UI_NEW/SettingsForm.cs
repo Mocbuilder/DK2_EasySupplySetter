@@ -66,6 +66,10 @@ namespace DK2_ESS_UI
                         {
                             SupplySetter.logDir = line.Split('=')[1];
                         }
+                        else if (line.StartsWith("modDir="))
+                        {
+                            MainForm.modsFolderPath = line.Split('=')[1];
+                        }
                     }
                 }
 
