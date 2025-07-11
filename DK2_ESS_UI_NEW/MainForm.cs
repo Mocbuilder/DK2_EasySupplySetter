@@ -7,7 +7,7 @@ namespace DK2_ESS_UI
     public partial class MainForm : Form
     {
 
-        string modsFolderPath;
+        public static string modsFolderPath;
         DialogResult dialogResult;
 
         public MainForm()
@@ -20,7 +20,7 @@ namespace DK2_ESS_UI
             SetFolderFoundUI(CheckModsFolderPath());
         }
 
-        public bool CheckModsFolderPath()
+        public static bool CheckModsFolderPath()
         {
             if (!modsFolderPath.Contains("steamapps\\workshop\\content\\1239080"))
             {

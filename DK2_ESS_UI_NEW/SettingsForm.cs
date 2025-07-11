@@ -40,6 +40,10 @@ namespace DK2_ESS_UI
                 writer.WriteLine($"[More: https://github.com/Mocbuilder/Temp_program]");
                 writer.WriteLine($"createLog={SupplySetter.createLog}");
                 writer.WriteLine($"logDir={SupplySetter.logDir}");
+                if (MainForm.CheckModsFolderPath())
+                {
+                    writer.WriteLine($"modDir={MainForm.modsFolderPath}");
+                }
             }
         }
 
