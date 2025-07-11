@@ -65,10 +65,5 @@ namespace DK2_ESS_UI
             Temp_program.SetSupply(modsFolderPath, int.Parse(newValue_textBox.Text));
             MessageBox.Show("Supply values set successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
-        public void pleaseletmecommit()
-        {
-            Console.WriteLine("This is a test commit to check if the code works as expected.");
-        }
     }
 }
