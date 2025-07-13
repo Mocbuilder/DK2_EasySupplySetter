@@ -71,14 +71,11 @@ namespace DK2_ESS_UI_NEW
             var matchTitle = Regex.Match(text, @"title\s*=\s*""([^""]*)""");
             var matchAuthor = Regex.Match(text, @"author\s*=\s*""([^""]*)""");
 
-            if (!matchTitle.Success)
-            {
-                title = "Untitled Mod";
-            }
-            else if(!matchAuthor.Success)
-            {
-                author = "No Author";
-            }
+            if (matchTitle.Success)
+                title = matchTitle.Groups[1].Value;
+
+            if (matchAuthor.Success)
+                author = matchAuthor.Groups[1].Value;
             else
             {
                 title = matchTitle.Groups[1].Value;

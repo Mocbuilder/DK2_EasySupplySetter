@@ -14,7 +14,7 @@ namespace DK2_ESS_UI_NEW
         public Unit(string name, List<TrooperClass> trooperClasses)
         {
             Name = name;
-            TrooperClasses = new List<TrooperClass>();
+            TrooperClasses = trooperClasses;
         }
     }
 }
