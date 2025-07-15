@@ -24,7 +24,7 @@ namespace DK2_ESS_UI_NEW
             if (Mods == null || Mods.Count == 0)
             {
                 MessageBox.Show("No mods found in the specified folder.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                pleaseClose = false;
+                pleaseClose = true;
                 return;
             }
 
@@ -36,7 +36,7 @@ namespace DK2_ESS_UI_NEW
             List<TreeNode> ResultNodes = new List<TreeNode>();
             foreach (Mod _mod in Mods)
             {
-                TreeNode newModNode = new TreeNode(_mod.Name);
+                TreeNode newModNode = new TreeNode(AliasFinder(_mod.Name));
                 newModNode.Tag = _mod;
 
                 foreach (Unit _unit in _mod.Units)

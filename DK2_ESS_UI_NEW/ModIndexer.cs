@@ -36,6 +36,9 @@ namespace DK2_ESS_UI_NEW
             foreach (var modFolder in modFolders)
             {
                 string modXmlPath = Path.Combine(modFolder, "mod.xml");
+                if (!File.Exists(modXmlPath))
+                    continue;
+
                 Mod newMod = CreateModFromXML(modXmlPath);
 
                 if (File.Exists(modXmlPath))
@@ -97,11 +100,35 @@ namespace DK2_ESS_UI_NEW
         {
             //first read the xml and get the trooperClasses
 
-            string text = File.ReadAllText(unitXmlPath);
             string unitName = "Unknown Unit";
             List<TrooperClass> trooperClasses = new List<TrooperClass>();
 
-            XElement root = XElement.Parse(text);
+            XElement root;
+            try
+            {
+                root = XElement.Load(unitXmlPath);
+            }
+            catch (Exception exception)
+            {
+                if (SupplySetter.createLog)
+                {
+                    using (StreamWriter writer = new StreamWriter(Path.Combine(SupplySetter.logDir + $"DK2_ESS_Error_Log_{ DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss") }.txt")))
+                    {
+                        writer.WriteLine($"[Door Kickers 2 EasySupplySetter]");
+                        writer.WriteLine($"[Made by Mocbuilder]");
+                        writer.WriteLine($"[More: https://github.com/Mocbuilder/Temp_program]");
+                        writer.WriteLine($"[If you contact me about this Error, please also send this file.]");
+                        writer.WriteLine($"Error Log created at: {DateTime.Now}");
+                        writer.WriteLine($"Error reading unit XML file: {unitXmlPath}");
+                        writer.WriteLine($"Exception: \n{exception.Message}");
+                        writer.WriteLine($"Stack Trace: \n{exception.StackTrace}");
+                        writer.WriteLine($"Error log finished.");
+                    }
+                }
+
+                MessageBox.Show("Error reading unit XML file:\n" + unitXmlPath, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
 
             // Extract the Unit element
             var unitElement = root.Element("Unit");
