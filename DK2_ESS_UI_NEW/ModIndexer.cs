@@ -92,7 +92,9 @@ namespace DK2_ESS_UI_NEW
                 author = matchAuthor.Groups[1].Value;
             }
 
-            Mod mod = new Mod(title, author);
+            string modFolderPath = Path.GetDirectoryName(modXmlPath);
+
+            Mod mod = new Mod(title, author, modFolderPath);
             return mod;
         }
 
@@ -112,13 +114,32 @@ namespace DK2_ESS_UI_NEW
             {
                 if (SupplySetter.createLog)
                 {
-                    using (StreamWriter writer = new StreamWriter(Path.Combine(SupplySetter.logDir + $"DK2_ESS_Error_Log_{ DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss") }.txt")))
+                    bool logDirExists = false;
+                    string text = "";
+
+                    string errorLogDir = Path.Combine(SupplySetter.logDir + $"DK2_ESS_Error_Log_{DateTime.Now.ToString("yyyy-mm-dd")}.txt");
+
+                    if (File.Exists(errorLogDir))
                     {
-                        writer.WriteLine($"[Door Kickers 2 EasySupplySetter]");
-                        writer.WriteLine($"[Made by Mocbuilder]");
-                        writer.WriteLine($"[More: https://github.com/Mocbuilder/Temp_program]");
-                        writer.WriteLine($"[If you contact me about this Error, please also send this file.]");
-                        writer.WriteLine($"Error Log created at: {DateTime.Now}");
+                        logDirExists = true;
+                        text = File.ReadAllText(errorLogDir);
+                    }
+    
+                    using (StreamWriter writer = new StreamWriter(errorLogDir))
+                    {
+                        writer.WriteLine(text);
+                        if (!logDirExists)
+                        {
+                            writer.WriteLine($"[Door Kickers 2 EasySupplySetter]");
+                            writer.WriteLine($"[Made by Mocbuilder]");
+                            writer.WriteLine($"[More: https://github.com/Mocbuilder/Temp_program]");
+                            writer.WriteLine($"[If you contact me about this Error, please also send this file.]");
+                            writer.WriteLine($"[Error Log created at: {DateTime.Now}]");
+                        }
+
+                        if(logDirExists)
+                            writer.WriteLine($"Error Log created at: {DateTime.Now}");
+
                         writer.WriteLine($"Error reading unit XML file: {unitXmlPath}");
                         writer.WriteLine($"Exception: \n{exception.Message}");
                         writer.WriteLine($"Stack Trace: \n{exception.StackTrace}");
@@ -126,7 +147,8 @@ namespace DK2_ESS_UI_NEW
                     }
                 }
 
-                MessageBox.Show("Error reading unit XML file:\n" + unitXmlPath, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //For some reason the error message repeats infinitly for each invalid file, so its just not shown anymore.
+                //MessageBox.Show("Error reading unit XML file:\n" + unitXmlPath, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
 
@@ -166,6 +188,46 @@ namespace DK2_ESS_UI_NEW
 
             Unit newUnit = new Unit(unitName, trooperClasses);
             return newUnit;
+        }
+
+        public static string CheckForAlias(string name, Mod sourceMod)
+        {
+            List<Mod> mods = IndexMods(MainForm.modsFolderPath);
+            Tuple<bool, string> alias = FindAlias(name, sourceMod);
+
+            if (alias.Item1 == false)
+                return name;
+
+            return alias.Item2;
+        }
+
+        public static Tuple<bool, string> FindAlias(string name, Mod sourceMod)
+        {
+            Tuple<bool, string> result = new Tuple<bool, string>(false, name);
+
+            string localizationFolder = Path.Combine(sourceMod.FolderPath, "localization");
+            if (Directory.Exists(localizationFolder))
+            {
+                var matchingFiles = Directory.GetFiles(localizationFolder, "*.txt")
+                    .Where(file => Path.GetFileName(file)
+                    .ToLower().Contains("localization"));
+
+                foreach (var file in matchingFiles)
+                {
+                    string[] lines = File.ReadAllLines(file);
+                    foreach (string line in lines)
+                    {
+                        if (line.StartsWith("@") && line.Split("=")[0].Trim() == "@" + name)
+                        {
+                            string aliasName = line.Split("=")[1].Trim();
+                            result = new Tuple<bool, string>(true, aliasName);
+                            return result;
+                        }
+                    }
+                }
+            }
+
+            return result;
         }
     }
 }

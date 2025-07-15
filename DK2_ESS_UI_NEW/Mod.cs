@@ -11,12 +11,14 @@ namespace DK2_ESS_UI_NEW
         public string Name;
         public string Author;
         public List<Unit> Units;
+        public string FolderPath;
 
-        public Mod(string name, string author)
+        public Mod(string name, string author, string folderPath)
         {
             Name = name;
             Author = author;
             Units = new List<Unit>();
+            FolderPath = folderPath;
         }
     }
 }

@@ -36,18 +36,18 @@ namespace DK2_ESS_UI_NEW
             List<TreeNode> ResultNodes = new List<TreeNode>();
             foreach (Mod _mod in Mods)
             {
-                TreeNode newModNode = new TreeNode(AliasFinder(_mod.Name));
+                TreeNode newModNode = new TreeNode(ModIndexer.CheckForAlias(_mod.Name, _mod));
                 newModNode.Tag = _mod;
 
                 foreach (Unit _unit in _mod.Units)
                 {
-                    TreeNode newUnitNode = new TreeNode(_unit.Name);
+                    TreeNode newUnitNode = new TreeNode(ModIndexer.CheckForAlias(_unit.Name, _mod));
                     newUnitNode.Tag = _unit;
                     newModNode.Nodes.Add(newUnitNode);
 
                     foreach (TrooperClass _trooperClass in _unit.TrooperClasses)
                     {
-                        TreeNode newTrooperClassNode = new TreeNode(_trooperClass.NameUI);
+                        TreeNode newTrooperClassNode = new TreeNode(ModIndexer.CheckForAlias(_trooperClass.NameUI, _mod));
                         newTrooperClassNode.Tag = _trooperClass;
                         newUnitNode.Nodes.Add(newTrooperClassNode);
                     }
