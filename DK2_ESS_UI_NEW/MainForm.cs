@@ -73,7 +73,15 @@ namespace DK2_ESS_UI
         private void button1_Click(object sender, EventArgs e)
         {
             UnitSelectionForm unitSelectionForm = new UnitSelectionForm(modsFolderPath);
-            unitSelectionForm.ShowDialog();
+            if (!unitSelectionForm.pleaseClose)
+            {
+                unitSelectionForm.ShowDialog();
+            }
+            else
+            {
+                unitSelectionForm.Close();
+            }
+            
         }
     }
 }

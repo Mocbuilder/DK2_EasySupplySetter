@@ -14,6 +14,7 @@ namespace DK2_ESS_UI_NEW
     {
         List<Mod> Mods = new List<Mod>();
         string ModFolderPath;
+        public bool pleaseClose = false;
 
         public UnitSelectionForm(string modFolderPath)
         {
@@ -23,7 +24,7 @@ namespace DK2_ESS_UI_NEW
             if (Mods == null || Mods.Count == 0)
             {
                 MessageBox.Show("No mods found in the specified folder.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
+                pleaseClose = false;
                 return;
             }
 
