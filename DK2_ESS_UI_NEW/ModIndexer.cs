@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DK2_ESS_UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ namespace DK2_ESS_UI_NEW
         //Index all mod.xml and their associated *unit*.xml files and then group them as a "Mod" class. Then make an interface to display
         //them a list view or smth (maybe a tree view if possible ?) to select a new value for them inividually or select for bulk.
 
-        public List<Mod> IndexMods(string modsFolderPath)
+        public static List<Mod> IndexMods(string modsFolderPath)
         {
 
             var mods = new List<Mod>();
@@ -22,6 +23,12 @@ namespace DK2_ESS_UI_NEW
             {
                 Console.WriteLine("Base directory does not exist.");
                 return mods;
+            }
+
+            if (!MainForm.CheckModsFolderPath(modsFolderPath))
+            {
+                MessageBox.Show("Please select a valid mods folder path first!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
             }
 
             var modFolders = Directory.GetDirectories(modsFolderPath);
@@ -61,7 +68,7 @@ namespace DK2_ESS_UI_NEW
             return mods;
         }
 
-        public Mod CreateModFromXML(string modXmlPath)
+        public static Mod CreateModFromXML(string modXmlPath)
         {
             string text = File.ReadAllText(modXmlPath);
             string title = "Unknown Mod";
@@ -86,7 +93,7 @@ namespace DK2_ESS_UI_NEW
             return mod;
         }
 
-        public Unit CreateUnitFromXML(string unitXmlPath)
+        public static Unit CreateUnitFromXML(string unitXmlPath)
         {
             //first read the xml and get the trooperClasses
 

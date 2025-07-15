@@ -12,9 +12,50 @@ namespace DK2_ESS_UI_NEW
 {
     public partial class UnitSelectionForm : Form
     {
-        public UnitSelectionForm()
+        List<Mod> Mods = new List<Mod>();
+        string ModFolderPath;
+
+        public UnitSelectionForm(string modFolderPath)
         {
             InitializeComponent();
+            ModFolderPath = modFolderPath;
+            Mods = ModIndexer.IndexMods(ModFolderPath);
+            if (Mods == null || Mods.Count == 0)
+            {
+                MessageBox.Show("No mods found in the specified folder.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+                return;
+            }
+
+            treeView1.Nodes.AddRange(ModsToTreeNodes().ToArray());
+        }
+
+        public List<TreeNode> ModsToTreeNodes()
+        {
+            List<TreeNode> ResultNodes = new List<TreeNode>();
+            foreach (Mod _mod in Mods)
+            {
+                TreeNode newModNode = new TreeNode(_mod.Name);
+                newModNode.Tag = _mod;
+
+                foreach (Unit _unit in _mod.Units)
+                {
+                    TreeNode newUnitNode = new TreeNode(_unit.Name);
+                    newUnitNode.Tag = _unit;
+                    newModNode.Nodes.Add(newUnitNode);
+
+                    foreach (TrooperClass _trooperClass in _unit.TrooperClasses)
+                    {
+                        TreeNode newTrooperClassNode = new TreeNode(_trooperClass.NameUI);
+                        newTrooperClassNode.Tag = _trooperClass;
+                        newUnitNode.Nodes.Add(newTrooperClassNode);
+                    }
+                }
+
+                ResultNodes.Add(newModNode);
+            }
+
+            return ResultNodes;
         }
     }
 }

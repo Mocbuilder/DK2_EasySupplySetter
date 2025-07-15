@@ -28,18 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
+            treeView1 = new TreeView();
             SuspendLayout();
+            // 
+            // treeView1
+            // 
+            treeView1.Location = new Point(0, 0);
+            treeView1.Name = "treeView1";
+            treeView1.Size = new Size(415, 449);
+            treeView1.TabIndex = 0;
             // 
             // UnitSelectionForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(treeView1);
             Name = "UnitSelectionForm";
             Text = "UnitSelectionForm";
             ResumeLayout(false);
         }
 
         #endregion
+
+        private TreeView treeView1;
     }
 }

@@ -20,12 +20,12 @@ namespace DK2_ESS_UI
             modsFolderPath = dir.FullName;
 
             settingsForm.ReadSettingFromFile();
-            SetFolderFoundUI(CheckModsFolderPath());
+            SetFolderFoundUI(CheckModsFolderPath(modsFolderPath));
         }
 
-        public static bool CheckModsFolderPath()
+        public static bool CheckModsFolderPath(string path)
         {
-            if (!modsFolderPath.Contains("steamapps\\workshop\\content\\1239080"))
+            if (!path.Contains("steamapps\\workshop\\content\\1239080"))
             {
                 return false;
             }
@@ -53,7 +53,7 @@ namespace DK2_ESS_UI
             main_folderBrowserDialog.SelectedPath = modsFolderPath;
             dialogResult = main_folderBrowserDialog.ShowDialog();
             modsFolderPath = dialogResult == DialogResult.OK ? main_folderBrowserDialog.SelectedPath : modsFolderPath;
-            SetFolderFoundUI(CheckModsFolderPath());
+            SetFolderFoundUI(CheckModsFolderPath(modsFolderPath));
         }
 
         private void settings_Button_Click(object sender, EventArgs e)
@@ -63,9 +63,17 @@ namespace DK2_ESS_UI
 
         private void confirm_roundedButton_Click(object sender, EventArgs e)
         {
+            if (!CheckModsFolderPath(modsFolderPath))
+                MessageBox.Show("Please select a valid mods folder path first!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
 
             SupplySetter.SetSupply(modsFolderPath, int.Parse(newValue_textBox.Text));
             MessageBox.Show("Supply values set successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            UnitSelectionForm unitSelectionForm = new UnitSelectionForm(modsFolderPath);
+            unitSelectionForm.ShowDialog();
         }
     }
 }

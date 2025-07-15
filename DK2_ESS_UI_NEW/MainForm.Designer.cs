@@ -37,6 +37,7 @@
             modsFolder_roundedButton = new RoundedButton();
             confirm_roundedButton = new RoundedButton();
             settings_Button = new Button();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)modsFolder_pictureBox).BeginInit();
             SuspendLayout();
             // 
@@ -127,6 +128,16 @@
             settings_Button.UseVisualStyleBackColor = true;
             settings_Button.Click += settings_Button_Click;
             // 
+            // button1
+            // 
+            button1.Location = new Point(164, 321);
+            button1.Name = "button1";
+            button1.Size = new Size(140, 29);
+            button1.TabIndex = 7;
+            button1.Text = "SelectionForm";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -134,6 +145,7 @@
             AutoValidate = AutoValidate.EnableAllowFocusChange;
             BackColor = SystemColors.ControlDarkDark;
             ClientSize = new Size(329, 363);
+            Controls.Add(button1);
             Controls.Add(settings_Button);
             Controls.Add(confirm_roundedButton);
             Controls.Add(modsFolder_roundedButton);
@@ -163,5 +175,6 @@
         private RoundedButton modsFolder_roundedButton;
         private RoundedButton confirm_roundedButton;
         private Button settings_Button;
+        private Button button1;
     }
 }
