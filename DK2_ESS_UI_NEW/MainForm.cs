@@ -76,6 +76,7 @@ namespace DK2_ESS_UI
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
             UnitSelectionForm unitSelectionForm = new UnitSelectionForm(modsFolderPath);
             if (!unitSelectionForm.pleaseClose)
             {
@@ -86,6 +87,7 @@ namespace DK2_ESS_UI
                 unitSelectionForm.Close();
             }
             
+            Cursor.Current = Cursors.Default;
         }
     }
 }

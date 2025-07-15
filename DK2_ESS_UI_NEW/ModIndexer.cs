@@ -14,6 +14,8 @@ namespace DK2_ESS_UI_NEW
         //Index all mod.xml and their associated *unit*.xml files and then group them as a "Mod" class. Then make an interface to display
         //them a list view or smth (maybe a tree view if possible ?) to select a new value for them inividually or select for bulk.
 
+        public static List<string> invalidFiles = new List<string>();
+
         public static List<Mod> IndexMods(string modsFolderPath)
         {
 
@@ -101,6 +103,8 @@ namespace DK2_ESS_UI_NEW
         public static Unit CreateUnitFromXML(string unitXmlPath)
         {
             //first read the xml and get the trooperClasses
+            if(invalidFiles.Contains(unitXmlPath))
+                return null;
 
             string unitName = "Unknown Unit";
             List<TrooperClass> trooperClasses = new List<TrooperClass>();
@@ -138,15 +142,17 @@ namespace DK2_ESS_UI_NEW
                         }
 
                         if(logDirExists)
-                            writer.WriteLine($"Error Log created at: {DateTime.Now}");
+                            writer.WriteLine($"[Error Log created at: {DateTime.Now}]");
 
                         writer.WriteLine($"Error reading unit XML file: {unitXmlPath}");
-                        writer.WriteLine($"Exception: \n{exception.Message}");
-                        writer.WriteLine($"Stack Trace: \n{exception.StackTrace}");
-                        writer.WriteLine($"Error log finished.");
+                        writer.WriteLine($"[Exception] \n{exception.Message}");
+                        writer.WriteLine($"[Stack Trace] \n{exception.StackTrace}");
+                        writer.WriteLine($"[Error log finished]");
                     }
                 }
 
+
+                invalidFiles.Add(unitXmlPath);
                 //For some reason the error message repeats infinitly for each invalid file, so its just not shown anymore.
                 //MessageBox.Show("Error reading unit XML file:\n" + unitXmlPath, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
@@ -208,23 +214,28 @@ namespace DK2_ESS_UI_NEW
             string localizationFolder = Path.Combine(sourceMod.FolderPath, "localization");
             if (Directory.Exists(localizationFolder))
             {
-                var matchingFiles = Directory.GetFiles(localizationFolder, "*.txt")
-                    .Where(file => Path.GetFileName(file)
-                    .ToLower().Contains("localization"));
-
-                foreach (var file in matchingFiles)
+                var matchingFiles = Directory.GetFiles(localizationFolder, "*.txt");
+                
+                foreach (string file in matchingFiles)
                 {
-                    string[] lines = File.ReadAllLines(file);
-                    foreach (string line in lines)
+                    foreach (string lineRaw in File.ReadAllLines(file))
                     {
-                        if (line.StartsWith("@") && line.Split("=")[0].Trim() == "@" + name)
+                        string line = lineRaw.Replace("\uFEFF", "").Trim();
+
+                        if (!line.StartsWith("@") || !line.Contains("="))
+                            continue;
+
+                        int equalsIndex = line.IndexOf('=');
+                        string key = line.Substring(0, equalsIndex).Trim();
+                        string value = line.Substring(equalsIndex + 1).Trim();
+
+                        if (key == name.Trim())
                         {
-                            string aliasName = line.Split("=")[1].Trim();
-                            result = new Tuple<bool, string>(true, aliasName);
-                            return result;
+                            return Tuple.Create(true, value);
                         }
                     }
                 }
+                
             }
 
             return result;

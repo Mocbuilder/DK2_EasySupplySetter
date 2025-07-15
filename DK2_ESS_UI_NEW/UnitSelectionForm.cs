@@ -29,6 +29,7 @@ namespace DK2_ESS_UI_NEW
             }
 
             treeView1.Nodes.AddRange(ModsToTreeNodes().ToArray());
+            Cursor.Current = Cursors.Default;
         }
 
         public List<TreeNode> ModsToTreeNodes()
