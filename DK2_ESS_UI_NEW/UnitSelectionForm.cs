@@ -59,5 +59,12 @@ namespace DK2_ESS_UI_NEW
 
             return ResultNodes;
         }
+
+        public DisplayableObject SelectionToDisplayableObject(TreeNode treeNode)
+        {
+            var sourceObject = treeNode.Tag;
+
+            if(sourceObject.GetType() == Mod)
+        } 
     }
 }
