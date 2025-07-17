@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace DK2_ESS_UI_NEW
 {
-    public class DisplayableObject
+    public class DisplayObject
     {
         public string Name;
         public Type Type;
         public Dictionary<string, string> Properties;
 
-        public DisplayableObject(string name, Type type, Dictionary<string, string> properties)
+        public DisplayObject(string name, Type type, Dictionary<string, string> properties)
         {
             Name = name;
             Type = type;

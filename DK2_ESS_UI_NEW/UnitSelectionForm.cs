@@ -60,11 +60,68 @@ namespace DK2_ESS_UI_NEW
             return ResultNodes;
         }
 
-        public DisplayableObject SelectionToDisplayableObject(TreeNode treeNode)
+        public DisplayObject TreeNodeToDisplayableObject(TreeNode treeNode)
         {
             var sourceObject = treeNode.Tag;
+            DisplayObject result = null;
 
-            if(sourceObject.GetType() == Mod)
-        } 
+            if (sourceObject is Mod)
+            {
+                Mod tempMod = sourceObject as Mod;
+                Dictionary<string, string> properties = new Dictionary<string, string>
+                {
+                    {"Name", tempMod.Name },
+                    { "Author", tempMod.Author },
+                    { "FolderPath", tempMod.FolderPath }
+                };
+
+                result = new DisplayObject(tempMod.Name, typeof(Mod), properties);
+            }
+            else if (sourceObject is Unit)
+            {
+                Unit tempUnit = sourceObject as Unit;
+                Dictionary<string, string> properties = new Dictionary<string, string>
+                {
+                    {"Name", tempUnit.Name },
+                };
+
+                result = new DisplayObject(tempUnit.Name, typeof(Unit), properties);
+            }
+            else if (sourceObject is TrooperClass)
+            {
+                TrooperClass tempTrooperClass = sourceObject as TrooperClass;
+                Dictionary<string, string> properties = new Dictionary<string, string>
+                {
+                    {"Name", tempTrooperClass.Name },
+                    {"NameUI", tempTrooperClass.NameUI },
+                    {"NumSlots", tempTrooperClass.NumSlots.ToString() },
+                    {"Supply", tempTrooperClass.Supply.ToString() }
+                };
+
+                result = new DisplayObject(tempTrooperClass.Name, typeof(TrooperClass), properties);
+            }
+            else
+            {
+                Dictionary<string, string> properties = new Dictionary<string, string>
+                {
+                    {"Name", "Unknown" },
+                    {"Description", $"Object cant be parsed or displayed.\n{sourceObject.ToString()}" }
+                };
+
+                result = new DisplayObject("Unknown", typeof(UnknownObject), properties);
+            }
+
+            return result;
+        }
+
+        protected void treeView1_AfterSelect(object sender,TreeViewEventArgs e)
+        {
+            DisplayNode(TreeNodeToDisplayableObject(e.Node));
+        }
+
+        public void DisplayNode(DisplayObject displayObject)
+        {
+
+        }
     }
 }
