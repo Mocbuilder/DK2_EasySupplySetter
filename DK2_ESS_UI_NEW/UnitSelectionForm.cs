@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,6 +20,8 @@ namespace DK2_ESS_UI_NEW
         public UnitSelectionForm(string modFolderPath)
         {
             InitializeComponent();
+            ClearDisplay();
+            HideDisplay();
             ModFolderPath = modFolderPath;
             Mods = ModIndexer.IndexMods(ModFolderPath);
             if (Mods == null || Mods.Count == 0)
@@ -114,14 +117,105 @@ namespace DK2_ESS_UI_NEW
             return result;
         }
 
-        protected void treeView1_AfterSelect(object sender,TreeViewEventArgs e)
+        protected void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             DisplayNode(TreeNodeToDisplayableObject(e.Node));
         }
 
         public void DisplayNode(DisplayObject displayObject)
         {
+            if (displayObject is Mod)
+            {
+                Dictionary<Control, string> controls = new Dictionary<Control, string>
+                {
+                    {name_label, displayObject.GetPropertie("Name")},
+                    {desc1_label, displayObject.GetPropertie("Author")},
+                    {desc2_label, displayObject.GetPropertie("FolderPath")}
+                };
 
+                ShowControls(controls);
+            }
+            else if (displayObject is Unit)
+            {
+                Dictionary<Control, string> controls = new Dictionary<Control, string>
+                {
+                    {name_label, displayObject.GetPropertie("Name")},
+                };
+
+                ShowControls(controls);
+            }
+            else if (displayObject is TrooperClass)
+            {
+                Dictionary<Control, string> controls = new Dictionary<Control, string>
+                {
+                    {name_label, displayObject.GetPropertie("NameUI")},
+                    {debugName_label, displayObject.GetPropertie("Name")},
+                    {value1_label, "Numslots"},
+                    {value2_label, "Supply"},
+                    {value1_textBox, displayObject.GetPropertie("Numslots")},
+                    {value2_textBox, displayObject.GetPropertie("Supply")}
+                };
+
+                ShowControls(controls);
+            }
+            else
+            {
+                Dictionary<Control, string> controls = new Dictionary<Control, string>
+                {
+                    {name_label, displayObject.GetPropertie("Name")},
+                    {desc1_label, displayObject.GetPropertie("Description")},
+                };
+
+                ShowControls(controls);
+            }
+        }
+
+        public void ClearDisplay()
+        {
+            name_label.Text = "Unknown";
+            debugName_label.Text = "Unknown";
+            desc1_label.Text = "No description available.";
+            desc2_label.Text = "";
+            value1_label.Text = "";
+            value2_label.Text = "";
+            value1_textBox.Clear();
+            value2_textBox.Clear();
+        }
+
+        public void HideDisplay()
+        {
+            debugName_label.Visible = false;
+            desc1_label.Visible = false;
+            desc2_label.Visible = false;
+            value1_label.Visible = false;
+            value2_label.Visible = false;
+            value1_textBox.Visible = false;
+            value2_textBox.Visible = false;
+        }
+
+        public void ShowControls(Dictionary<Control, string> controls)
+        {
+            foreach (KeyValuePair<Control, string> item in controls)
+            {
+                item.Key.Text = item.Value;
+                item.Key.Visible = true;
+            }
+        }
+
+        public void RevealDisplay()
+        {
+            debugName_label.Visible = true;
+            desc1_label.Visible = true;
+            desc2_label.Visible = true;
+            value1_label.Visible = true;
+            value2_label.Visible = true;
+            value1_textBox.Visible = true;
+            value2_textBox.Visible = true;
+        }
+
+        private void desc2_label_Click(object sender, EventArgs e)
+        {
+            //open folder that is displayed
         }
     }
 }

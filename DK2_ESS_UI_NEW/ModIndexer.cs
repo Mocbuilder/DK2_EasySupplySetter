@@ -15,6 +15,7 @@ namespace DK2_ESS_UI_NEW
         //them a list view or smth (maybe a tree view if possible ?) to select a new value for them inividually or select for bulk.
 
         public static List<string> invalidFiles = new List<string>();
+        public static List<Mod> indexedMods = new List<Mod>();
 
         public static List<Mod> IndexMods(string modsFolderPath)
         {
@@ -70,6 +71,7 @@ namespace DK2_ESS_UI_NEW
                 }
             }
 
+            indexedMods = mods;
             return mods;
         }
 
@@ -198,7 +200,6 @@ namespace DK2_ESS_UI_NEW
 
         public static string CheckForAlias(string name, Mod sourceMod)
         {
-            List<Mod> mods = IndexMods(MainForm.modsFolderPath);
             Tuple<bool, string> alias = FindAlias(name, sourceMod);
 
             if (alias.Item1 == false)
