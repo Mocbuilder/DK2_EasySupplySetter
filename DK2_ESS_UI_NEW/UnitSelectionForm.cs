@@ -20,6 +20,9 @@ namespace DK2_ESS_UI_NEW
         public UnitSelectionForm(string modFolderPath)
         {
             InitializeComponent();
+
+            treeView1.NodeMouseClick += treeView1_NodeMouseClick;
+
             ClearDisplay();
             HideDisplay();
             ModFolderPath = modFolderPath;
@@ -117,25 +120,27 @@ namespace DK2_ESS_UI_NEW
             return result;
         }
 
-        protected void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             DisplayNode(TreeNodeToDisplayableObject(e.Node));
         }
 
         public void DisplayNode(DisplayObject displayObject)
         {
-            if (displayObject is Mod)
+            if (displayObject.Type == typeof(Mod))
             {
                 Dictionary<Control, string> controls = new Dictionary<Control, string>
                 {
                     {name_label, displayObject.GetPropertie("Name")},
                     {desc1_label, displayObject.GetPropertie("Author")},
-                    {desc2_label, displayObject.GetPropertie("FolderPath")}
+                    {desc1Title_label, "Author"},
+                    {desc2_label, displayObject.GetPropertie("FolderPath")},
+                    {desc2Title_label, "Folder"}
                 };
 
                 ShowControls(controls);
             }
-            else if (displayObject is Unit)
+            else if (displayObject.Type == typeof(Unit))
             {
                 Dictionary<Control, string> controls = new Dictionary<Control, string>
                 {
@@ -144,12 +149,13 @@ namespace DK2_ESS_UI_NEW
 
                 ShowControls(controls);
             }
-            else if (displayObject is TrooperClass)
+            else if (displayObject.Type == typeof(TrooperClass))
             {
                 Dictionary<Control, string> controls = new Dictionary<Control, string>
                 {
                     {name_label, displayObject.GetPropertie("NameUI")},
                     {debugName_label, displayObject.GetPropertie("Name")},
+                    {debugNameTitle_label, "Debug Name"},
                     {value1_label, "Numslots"},
                     {value2_label, "Supply"},
                     {value1_textBox, displayObject.GetPropertie("Numslots")},
@@ -163,7 +169,7 @@ namespace DK2_ESS_UI_NEW
                 Dictionary<Control, string> controls = new Dictionary<Control, string>
                 {
                     {name_label, displayObject.GetPropertie("Name")},
-                    {desc1_label, displayObject.GetPropertie("Description")},
+                    {desc1_label, displayObject.GetPropertie("Description")}
                 };
 
                 ShowControls(controls);
@@ -195,6 +201,8 @@ namespace DK2_ESS_UI_NEW
 
         public void ShowControls(Dictionary<Control, string> controls)
         {
+            HideDisplay();
+
             foreach (KeyValuePair<Control, string> item in controls)
             {
                 item.Key.Text = item.Value;

@@ -38,6 +38,9 @@
             desc2_label = new Label();
             value1_textBox = new TextBox();
             value2_textBox = new TextBox();
+            desc2Title_label = new Label();
+            desc1Title_label = new Label();
+            debugNameTitle_label = new Label();
             SuspendLayout();
             // 
             // treeView1
@@ -52,8 +55,8 @@
             // name_label
             // 
             name_label.AutoSize = true;
-            name_label.Font = new Font("Lucida Console", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            name_label.Location = new Point(476, 22);
+            name_label.Font = new Font("Lucida Console", 10F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
+            name_label.Location = new Point(476, 21);
             name_label.Name = "name_label";
             name_label.Size = new Size(87, 20);
             name_label.TabIndex = 1;
@@ -62,7 +65,7 @@
             // debugName_label
             // 
             debugName_label.AutoSize = true;
-            debugName_label.Location = new Point(476, 52);
+            debugName_label.Location = new Point(600, 56);
             debugName_label.Name = "debugName_label";
             debugName_label.Size = new Size(107, 18);
             debugName_label.TabIndex = 2;
@@ -71,7 +74,7 @@
             // desc1_label
             // 
             desc1_label.AutoSize = true;
-            desc1_label.Location = new Point(476, 97);
+            desc1_label.Location = new Point(600, 95);
             desc1_label.Name = "desc1_label";
             desc1_label.Size = new Size(63, 18);
             desc1_label.TabIndex = 3;
@@ -108,7 +111,7 @@
             // desc2_label
             // 
             desc2_label.AutoSize = true;
-            desc2_label.Location = new Point(476, 148);
+            desc2_label.Location = new Point(600, 146);
             desc2_label.Name = "desc2_label";
             desc2_label.Size = new Size(63, 18);
             desc2_label.TabIndex = 7;
@@ -133,12 +136,42 @@
             value2_textBox.Size = new Size(206, 25);
             value2_textBox.TabIndex = 9;
             // 
+            // desc2Title_label
+            // 
+            desc2Title_label.AutoSize = true;
+            desc2Title_label.Location = new Point(476, 146);
+            desc2Title_label.Name = "desc2Title_label";
+            desc2Title_label.Size = new Size(63, 18);
+            desc2Title_label.TabIndex = 12;
+            desc2Title_label.Text = "desc2";
+            // 
+            // desc1Title_label
+            // 
+            desc1Title_label.AutoSize = true;
+            desc1Title_label.Location = new Point(476, 95);
+            desc1Title_label.Name = "desc1Title_label";
+            desc1Title_label.Size = new Size(63, 18);
+            desc1Title_label.TabIndex = 11;
+            desc1Title_label.Text = "desc1";
+            // 
+            // debugNameTitle_label
+            // 
+            debugNameTitle_label.AutoSize = true;
+            debugNameTitle_label.Location = new Point(476, 56);
+            debugNameTitle_label.Name = "debugNameTitle_label";
+            debugNameTitle_label.Size = new Size(173, 18);
+            debugNameTitle_label.TabIndex = 13;
+            debugNameTitle_label.Text = "debugName_title";
+            // 
             // UnitSelectionForm
             // 
             AutoScaleDimensions = new SizeF(11F, 18F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlDarkDark;
             ClientSize = new Size(880, 429);
+            Controls.Add(debugNameTitle_label);
+            Controls.Add(desc2Title_label);
+            Controls.Add(desc1Title_label);
             Controls.Add(value2_textBox);
             Controls.Add(value1_textBox);
             Controls.Add(desc2_label);
@@ -173,5 +206,8 @@
         private Label desc2_label;
         private TextBox value1_textBox;
         private TextBox value2_textBox;
+        private Label desc2Title_label;
+        private Label desc1Title_label;
+        private Label debugNameTitle_label;
     }
 }

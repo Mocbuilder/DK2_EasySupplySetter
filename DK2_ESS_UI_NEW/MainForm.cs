@@ -65,10 +65,10 @@ namespace DK2_ESS_UI
         {
             if (!CheckModsFolderPath(modsFolderPath))
             {
-                MessageBox.Show("Please select a valid mods folder path first!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); 
+                MessageBox.Show("Please select a valid mods folder path first!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-                
+
 
             SupplySetter.SetSupply(modsFolderPath, int.Parse(newValue_textBox.Text));
             MessageBox.Show("Supply values set successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -86,7 +86,7 @@ namespace DK2_ESS_UI
             {
                 unitSelectionForm.Close();
             }
-            
+
             Cursor.Current = Cursors.Default;
         }
     }
