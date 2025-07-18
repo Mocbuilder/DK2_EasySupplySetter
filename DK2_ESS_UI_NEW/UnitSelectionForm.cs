@@ -16,6 +16,7 @@ namespace DK2_ESS_UI_NEW
         List<Mod> Mods = new List<Mod>();
         string ModFolderPath;
         public bool pleaseClose = false;
+        public static List<DisplayObject> defaultValues = new List<DisplayObject>();
 
         public UnitSelectionForm(string modFolderPath)
         {
@@ -66,7 +67,7 @@ namespace DK2_ESS_UI_NEW
             return ResultNodes;
         }
 
-        public DisplayObject TreeNodeToDisplayableObject(TreeNode treeNode)
+        public DisplayObject TreeNodeToDisplayObject(TreeNode treeNode)
         {
             var sourceObject = treeNode.Tag;
             DisplayObject result = null;
@@ -88,7 +89,7 @@ namespace DK2_ESS_UI_NEW
                 Unit tempUnit = sourceObject as Unit;
                 Dictionary<string, string> properties = new Dictionary<string, string>
                 {
-                    {"Name", tempUnit.Name },
+                    {"Name", ModIndexer.CheckForAlias(tempUnit.Name, treeNode.Parent.Tag as Mod) },
                 };
 
                 result = new DisplayObject(tempUnit.Name, typeof(Unit), properties);
@@ -99,7 +100,7 @@ namespace DK2_ESS_UI_NEW
                 Dictionary<string, string> properties = new Dictionary<string, string>
                 {
                     {"Name", tempTrooperClass.Name },
-                    {"NameUI", tempTrooperClass.NameUI },
+                    {"NameUI", ModIndexer.CheckForAlias(tempTrooperClass.NameUI, treeNode.Parent.Parent.Tag as Mod) },
                     {"NumSlots", tempTrooperClass.NumSlots.ToString() },
                     {"Supply", tempTrooperClass.Supply.ToString() }
                 };
@@ -122,20 +123,23 @@ namespace DK2_ESS_UI_NEW
 
         private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            DisplayNode(TreeNodeToDisplayableObject(e.Node));
+            HideDisplay();
+            DisplayNode(TreeNodeToDisplayObject(e.Node));
         }
 
         public void DisplayNode(DisplayObject displayObject)
         {
+            AddToDefaultValues(displayObject);
+
             if (displayObject.Type == typeof(Mod))
             {
                 Dictionary<Control, string> controls = new Dictionary<Control, string>
                 {
                     {name_label, displayObject.GetPropertie("Name")},
                     {desc1_label, displayObject.GetPropertie("Author")},
-                    {desc1Title_label, "Author"},
+                    {desc1Title_label, "Author:"},
                     {desc2_label, displayObject.GetPropertie("FolderPath")},
-                    {desc2Title_label, "Folder"}
+                    {desc2Title_label, "Folder:"}
                 };
 
                 ShowControls(controls);
@@ -155,10 +159,10 @@ namespace DK2_ESS_UI_NEW
                 {
                     {name_label, displayObject.GetPropertie("NameUI")},
                     {debugName_label, displayObject.GetPropertie("Name")},
-                    {debugNameTitle_label, "Debug Name"},
-                    {value1_label, "Numslots"},
-                    {value2_label, "Supply"},
-                    {value1_textBox, displayObject.GetPropertie("Numslots")},
+                    {debugNameTitle_label, "Debug Name: "},
+                    {value1_label, "NumSlots:"},
+                    {value2_label, "Supply:"},
+                    {value1_textBox, displayObject.GetPropertie("NumSlots")},
                     {value2_textBox, displayObject.GetPropertie("Supply")}
                 };
 
@@ -191,8 +195,11 @@ namespace DK2_ESS_UI_NEW
         public void HideDisplay()
         {
             debugName_label.Visible = false;
+            debugNameTitle_label.Visible = false;
             desc1_label.Visible = false;
             desc2_label.Visible = false;
+            desc1Title_label.Visible = false;
+            desc2Title_label.Visible = false;
             value1_label.Visible = false;
             value2_label.Visible = false;
             value1_textBox.Visible = false;
@@ -213,7 +220,10 @@ namespace DK2_ESS_UI_NEW
         public void RevealDisplay()
         {
             debugName_label.Visible = true;
+            debugNameTitle_label.Visible = true;
             desc1_label.Visible = true;
+            desc1Title_label.Visible = true;
+            desc2Title_label.Visible = true;
             desc2_label.Visible = true;
             value1_label.Visible = true;
             value2_label.Visible = true;
@@ -224,6 +234,30 @@ namespace DK2_ESS_UI_NEW
         private void desc2_label_Click(object sender, EventArgs e)
         {
             //open folder that is displayed
+        }
+
+        private void save_roundedButton_Click(object sender, EventArgs e)
+        {
+            AddToDefaultValues(InputToDisplayObject());
+            //set supply/
+        }
+
+        public void AddToDefaultValues(DisplayObject displayObject)
+        {
+            foreach (DisplayObject item in defaultValues)
+            {
+                if (item.Name == displayObject.Name && item.Properties != displayObject.Properties)
+                {
+                    defaultValues.Remove(item);
+                    defaultValues.Add(displayObject);
+                }
+            }
+        }
+
+        public DisplayObject InputToDisplayObject()
+        {
+            DisplayObject result;
+             
         }
     }
 }

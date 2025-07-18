@@ -41,22 +41,26 @@
             desc2Title_label = new Label();
             desc1Title_label = new Label();
             debugNameTitle_label = new Label();
+            save_roundedButton = new DK2_ESS_UI.RoundedButton();
+            reset_roundedButton = new DK2_ESS_UI.RoundedButton();
             SuspendLayout();
             // 
             // treeView1
             // 
             treeView1.BackColor = SystemColors.ControlDarkDark;
+            treeView1.Dock = DockStyle.Left;
             treeView1.Location = new Point(0, 0);
-            treeView1.Margin = new Padding(3, 2, 3, 2);
+            treeView1.Margin = new Padding(4, 2, 4, 2);
             treeView1.Name = "treeView1";
-            treeView1.Size = new Size(456, 429);
+            treeView1.Size = new Size(628, 524);
             treeView1.TabIndex = 0;
             // 
             // name_label
             // 
             name_label.AutoSize = true;
             name_label.Font = new Font("Lucida Console", 10F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
-            name_label.Location = new Point(476, 21);
+            name_label.Location = new Point(650, 29);
+            name_label.Margin = new Padding(4, 0, 4, 0);
             name_label.Name = "name_label";
             name_label.Size = new Size(87, 20);
             name_label.TabIndex = 1;
@@ -65,18 +69,22 @@
             // debugName_label
             // 
             debugName_label.AutoSize = true;
-            debugName_label.Location = new Point(600, 56);
+            debugName_label.Font = new Font("Lucida Console", 10F);
+            debugName_label.Location = new Point(875, 72);
+            debugName_label.Margin = new Padding(4, 0, 4, 0);
             debugName_label.Name = "debugName_label";
-            debugName_label.Size = new Size(107, 18);
+            debugName_label.Size = new Size(117, 20);
             debugName_label.TabIndex = 2;
             debugName_label.Text = "debugName";
             // 
             // desc1_label
             // 
             desc1_label.AutoSize = true;
-            desc1_label.Location = new Point(600, 95);
+            desc1_label.Font = new Font("Lucida Console", 10F);
+            desc1_label.Location = new Point(875, 120);
+            desc1_label.Margin = new Padding(4, 0, 4, 0);
             desc1_label.Name = "desc1_label";
-            desc1_label.Size = new Size(63, 18);
+            desc1_label.Size = new Size(69, 20);
             desc1_label.TabIndex = 3;
             desc1_label.Text = "desc1";
             // 
@@ -84,7 +92,8 @@
             // 
             values_label.AutoSize = true;
             values_label.Font = new Font("Lucida Console", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            values_label.Location = new Point(476, 222);
+            values_label.Location = new Point(650, 275);
+            values_label.Margin = new Padding(4, 0, 4, 0);
             values_label.Name = "values_label";
             values_label.Size = new Size(87, 20);
             values_label.TabIndex = 4;
@@ -93,27 +102,31 @@
             // value1_label
             // 
             value1_label.AutoSize = true;
-            value1_label.Location = new Point(476, 278);
+            value1_label.Location = new Point(650, 343);
+            value1_label.Margin = new Padding(4, 0, 4, 0);
             value1_label.Name = "value1_label";
-            value1_label.Size = new Size(74, 18);
+            value1_label.Size = new Size(88, 22);
             value1_label.TabIndex = 5;
             value1_label.Text = "value1";
             // 
             // value2_label
             // 
             value2_label.AutoSize = true;
-            value2_label.Location = new Point(476, 336);
+            value2_label.Location = new Point(650, 414);
+            value2_label.Margin = new Padding(4, 0, 4, 0);
             value2_label.Name = "value2_label";
-            value2_label.Size = new Size(74, 18);
+            value2_label.Size = new Size(88, 22);
             value2_label.TabIndex = 6;
             value2_label.Text = "value2";
             // 
             // desc2_label
             // 
             desc2_label.AutoSize = true;
-            desc2_label.Location = new Point(600, 146);
+            desc2_label.Font = new Font("Lucida Console", 10F);
+            desc2_label.Location = new Point(875, 182);
+            desc2_label.Margin = new Padding(4, 0, 4, 0);
             desc2_label.Name = "desc2_label";
-            desc2_label.Size = new Size(63, 18);
+            desc2_label.Size = new Size(69, 20);
             desc2_label.TabIndex = 7;
             desc2_label.Text = "desc2";
             desc2_label.Click += desc2_label_Click;
@@ -122,53 +135,81 @@
             // 
             value1_textBox.BackColor = SystemColors.ControlDark;
             value1_textBox.BorderStyle = BorderStyle.FixedSingle;
-            value1_textBox.Location = new Point(600, 271);
+            value1_textBox.Font = new Font("Lucida Console", 10F);
+            value1_textBox.Location = new Point(875, 335);
+            value1_textBox.Margin = new Padding(4);
             value1_textBox.Name = "value1_textBox";
-            value1_textBox.Size = new Size(206, 25);
+            value1_textBox.Size = new Size(243, 27);
             value1_textBox.TabIndex = 8;
             // 
             // value2_textBox
             // 
             value2_textBox.BackColor = SystemColors.ControlDark;
             value2_textBox.BorderStyle = BorderStyle.FixedSingle;
-            value2_textBox.Location = new Point(600, 329);
+            value2_textBox.Font = new Font("Lucida Console", 10F);
+            value2_textBox.Location = new Point(875, 406);
+            value2_textBox.Margin = new Padding(4);
             value2_textBox.Name = "value2_textBox";
-            value2_textBox.Size = new Size(206, 25);
+            value2_textBox.Size = new Size(243, 27);
             value2_textBox.TabIndex = 9;
             // 
             // desc2Title_label
             // 
             desc2Title_label.AutoSize = true;
-            desc2Title_label.Location = new Point(476, 146);
+            desc2Title_label.Location = new Point(650, 182);
+            desc2Title_label.Margin = new Padding(4, 0, 4, 0);
             desc2Title_label.Name = "desc2Title_label";
-            desc2Title_label.Size = new Size(63, 18);
+            desc2Title_label.Size = new Size(75, 22);
             desc2Title_label.TabIndex = 12;
             desc2Title_label.Text = "desc2";
             // 
             // desc1Title_label
             // 
             desc1Title_label.AutoSize = true;
-            desc1Title_label.Location = new Point(476, 95);
+            desc1Title_label.Location = new Point(650, 120);
+            desc1Title_label.Margin = new Padding(4, 0, 4, 0);
             desc1Title_label.Name = "desc1Title_label";
-            desc1Title_label.Size = new Size(63, 18);
+            desc1Title_label.Size = new Size(75, 22);
             desc1Title_label.TabIndex = 11;
             desc1Title_label.Text = "desc1";
             // 
             // debugNameTitle_label
             // 
             debugNameTitle_label.AutoSize = true;
-            debugNameTitle_label.Location = new Point(476, 56);
+            debugNameTitle_label.Location = new Point(650, 72);
+            debugNameTitle_label.Margin = new Padding(4, 0, 4, 0);
             debugNameTitle_label.Name = "debugNameTitle_label";
-            debugNameTitle_label.Size = new Size(173, 18);
+            debugNameTitle_label.Size = new Size(205, 22);
             debugNameTitle_label.TabIndex = 13;
             debugNameTitle_label.Text = "debugName_title";
             // 
+            // save_roundedButton
+            // 
+            save_roundedButton.Location = new Point(650, 462);
+            save_roundedButton.Name = "save_roundedButton";
+            save_roundedButton.Size = new Size(205, 50);
+            save_roundedButton.TabIndex = 14;
+            save_roundedButton.Text = "Save";
+            save_roundedButton.UseVisualStyleBackColor = true;
+            save_roundedButton.Click += save_roundedButton_Click;
+            // 
+            // reset_roundedButton
+            // 
+            reset_roundedButton.Location = new Point(875, 462);
+            reset_roundedButton.Name = "reset_roundedButton";
+            reset_roundedButton.Size = new Size(205, 50);
+            reset_roundedButton.TabIndex = 15;
+            reset_roundedButton.Text = "Reset";
+            reset_roundedButton.UseVisualStyleBackColor = true;
+            // 
             // UnitSelectionForm
             // 
-            AutoScaleDimensions = new SizeF(11F, 18F);
+            AutoScaleDimensions = new SizeF(13F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlDarkDark;
-            ClientSize = new Size(880, 429);
+            ClientSize = new Size(1220, 524);
+            Controls.Add(reset_roundedButton);
+            Controls.Add(save_roundedButton);
             Controls.Add(debugNameTitle_label);
             Controls.Add(desc2Title_label);
             Controls.Add(desc1Title_label);
@@ -182,9 +223,8 @@
             Controls.Add(debugName_label);
             Controls.Add(name_label);
             Controls.Add(treeView1);
-            Font = new Font("Lucida Console", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            Margin = new Padding(3, 2, 3, 2);
+            Font = new Font("Lucida Console", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Margin = new Padding(4, 2, 4, 2);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "UnitSelectionForm";
@@ -209,5 +249,7 @@
         private Label desc2Title_label;
         private Label desc1Title_label;
         private Label debugNameTitle_label;
+        private DK2_ESS_UI.RoundedButton save_roundedButton;
+        private DK2_ESS_UI.RoundedButton reset_roundedButton;
     }
 }

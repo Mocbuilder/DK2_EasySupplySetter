@@ -50,9 +50,10 @@
             // 
             newValue_textBox.BackColor = SystemColors.ControlDark;
             newValue_textBox.BorderStyle = BorderStyle.None;
-            newValue_textBox.Location = new Point(62, 68);
+            newValue_textBox.Location = new Point(81, 60);
+            newValue_textBox.Margin = new Padding(4, 3, 4, 3);
             newValue_textBox.Name = "newValue_textBox";
-            newValue_textBox.Size = new Size(118, 18);
+            newValue_textBox.Size = new Size(153, 18);
             newValue_textBox.TabIndex = 0;
             newValue_textBox.Text = "1";
             // 
@@ -60,7 +61,8 @@
             // 
             newValue_label.AutoSize = true;
             newValue_label.Font = new Font("Lucida Console", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            newValue_label.Location = new Point(62, 47);
+            newValue_label.Location = new Point(81, 41);
+            newValue_label.Margin = new Padding(4, 0, 4, 0);
             newValue_label.Name = "newValue_label";
             newValue_label.Size = new Size(118, 18);
             newValue_label.TabIndex = 1;
@@ -71,7 +73,8 @@
             modsFolder_label.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             modsFolder_label.AutoSize = true;
             modsFolder_label.Font = new Font("Lucida Console", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            modsFolder_label.Location = new Point(43, 30);
+            modsFolder_label.Location = new Point(56, 26);
+            modsFolder_label.Margin = new Padding(4, 0, 4, 0);
             modsFolder_label.Name = "modsFolder_label";
             modsFolder_label.Size = new Size(250, 18);
             modsFolder_label.TabIndex = 2;
@@ -84,9 +87,10 @@
             modsFolder_pictureBox.ErrorImage = DK2_ESS_UI_NEW.Properties.Resources.checkmark_green;
             modsFolder_pictureBox.Image = DK2_ESS_UI_NEW.Properties.Resources.cross_red;
             modsFolder_pictureBox.InitialImage = DK2_ESS_UI_NEW.Properties.Resources.cross_red;
-            modsFolder_pictureBox.Location = new Point(43, 62);
+            modsFolder_pictureBox.Location = new Point(56, 55);
+            modsFolder_pictureBox.Margin = new Padding(4, 3, 4, 3);
             modsFolder_pictureBox.Name = "modsFolder_pictureBox";
-            modsFolder_pictureBox.Size = new Size(89, 80);
+            modsFolder_pictureBox.Size = new Size(116, 70);
             modsFolder_pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
             modsFolder_pictureBox.TabIndex = 3;
             modsFolder_pictureBox.TabStop = false;
@@ -96,9 +100,10 @@
             modsFolder_roundedButton.BackColor = SystemColors.ControlDarkDark;
             modsFolder_roundedButton.FlatStyle = FlatStyle.Flat;
             modsFolder_roundedButton.Font = new Font("Lucida Console", 8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            modsFolder_roundedButton.Location = new Point(122, 62);
+            modsFolder_roundedButton.Location = new Point(159, 55);
+            modsFolder_roundedButton.Margin = new Padding(4, 3, 4, 3);
             modsFolder_roundedButton.Name = "modsFolder_roundedButton";
-            modsFolder_roundedButton.Size = new Size(171, 80);
+            modsFolder_roundedButton.Size = new Size(222, 70);
             modsFolder_roundedButton.TabIndex = 4;
             modsFolder_roundedButton.Text = "FIND FOLDER";
             modsFolder_roundedButton.UseVisualStyleBackColor = false;
@@ -109,9 +114,10 @@
             confirm_roundedButton.BackColor = SystemColors.ControlDarkDark;
             confirm_roundedButton.FlatStyle = FlatStyle.Flat;
             confirm_roundedButton.Font = new Font("Lucida Console", 8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            confirm_roundedButton.Location = new Point(43, 322);
+            confirm_roundedButton.Location = new Point(56, 283);
+            confirm_roundedButton.Margin = new Padding(4, 3, 4, 3);
             confirm_roundedButton.Name = "confirm_roundedButton";
-            confirm_roundedButton.Size = new Size(250, 79);
+            confirm_roundedButton.Size = new Size(325, 70);
             confirm_roundedButton.TabIndex = 5;
             confirm_roundedButton.Text = "SET SUPPLY";
             confirm_roundedButton.UseVisualStyleBackColor = false;
@@ -126,18 +132,20 @@
             settings_Button.FlatAppearance.MouseOverBackColor = Color.Transparent;
             settings_Button.FlatStyle = FlatStyle.Flat;
             settings_Button.Image = DK2_ESS_UI_NEW.Properties.Resources.gear;
-            settings_Button.Location = new Point(2, 407);
+            settings_Button.Location = new Point(3, 358);
+            settings_Button.Margin = new Padding(4, 3, 4, 3);
             settings_Button.Name = "settings_Button";
-            settings_Button.Size = new Size(51, 49);
+            settings_Button.Size = new Size(66, 43);
             settings_Button.TabIndex = 6;
             settings_Button.UseVisualStyleBackColor = true;
             settings_Button.Click += settings_Button_Click;
             // 
             // button1
             // 
-            button1.Location = new Point(153, 415);
+            button1.Location = new Point(199, 365);
+            button1.Margin = new Padding(4, 3, 4, 3);
             button1.Name = "button1";
-            button1.Size = new Size(140, 29);
+            button1.Size = new Size(200, 26);
             button1.TabIndex = 7;
             button1.Text = "SelectionForm";
             button1.UseVisualStyleBackColor = true;
@@ -148,10 +156,11 @@
             selection_tabControl.Controls.Add(tabPage1);
             selection_tabControl.Controls.Add(tabPage2);
             selection_tabControl.Font = new Font("Lucida Console", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            selection_tabControl.Location = new Point(43, 148);
+            selection_tabControl.Location = new Point(56, 130);
+            selection_tabControl.Margin = new Padding(4, 3, 4, 3);
             selection_tabControl.Name = "selection_tabControl";
             selection_tabControl.SelectedIndex = 0;
-            selection_tabControl.Size = new Size(250, 176);
+            selection_tabControl.Size = new Size(325, 155);
             selection_tabControl.TabIndex = 8;
             // 
             // tabPage1
@@ -160,9 +169,10 @@
             tabPage1.Controls.Add(newValue_label);
             tabPage1.Controls.Add(newValue_textBox);
             tabPage1.Location = new Point(4, 28);
+            tabPage1.Margin = new Padding(4, 3, 4, 3);
             tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(242, 144);
+            tabPage1.Padding = new Padding(4, 3, 4, 3);
+            tabPage1.Size = new Size(317, 123);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Global";
             // 
@@ -170,19 +180,20 @@
             // 
             tabPage2.BackColor = SystemColors.ControlDarkDark;
             tabPage2.Location = new Point(4, 28);
+            tabPage2.Margin = new Padding(4, 3, 4, 3);
             tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(242, 144);
+            tabPage2.Padding = new Padding(4, 3, 4, 3);
+            tabPage2.Size = new Size(317, 123);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Single";
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(13F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoValidate = AutoValidate.EnableAllowFocusChange;
             BackColor = SystemColors.ControlDarkDark;
-            ClientSize = new Size(335, 458);
+            ClientSize = new Size(435, 403);
             Controls.Add(selection_tabControl);
             Controls.Add(button1);
             Controls.Add(settings_Button);
@@ -190,8 +201,10 @@
             Controls.Add(modsFolder_roundedButton);
             Controls.Add(modsFolder_pictureBox);
             Controls.Add(modsFolder_label);
+            Font = new Font("Lucida Console", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(4, 3, 4, 3);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "MainForm";

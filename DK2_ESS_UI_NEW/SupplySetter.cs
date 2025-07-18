@@ -14,7 +14,7 @@ namespace DK2_ESS_UI_NEW
 
         public static void Main1()
         {
-            Console.WriteLine("This executable on its own doesnt do anything anymore, please use the UI version.");
+            MessageBox.Show("This, on its own, doesnt do anything anymore. Please use the UI version.");
         }
 
         public static void SetSupply(string dir, int newSupply)

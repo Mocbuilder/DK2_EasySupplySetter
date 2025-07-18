@@ -179,7 +179,7 @@ namespace DK2_ESS_UI_NEW
                     {
                         string className = cls.Attribute("name")?.Value ?? "Unnamed";
                         string classNameUI = cls.Attribute("nameUI")?.Value ?? "Unnamed";
-                        string numSlots = cls.Attribute("numslots")?.Value ?? "0";
+                        string numSlots = cls.Attribute("numSlots")?.Value ?? "0";
                         string supply = cls.Attribute("supply")?.Value ?? "100";
 
                         TrooperClass newTrooperClass = new TrooperClass(
