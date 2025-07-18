@@ -201,6 +201,7 @@
             reset_roundedButton.TabIndex = 15;
             reset_roundedButton.Text = "Reset";
             reset_roundedButton.UseVisualStyleBackColor = true;
+            reset_roundedButton.Click += reset_roundedButton_Click;
             // 
             // UnitSelectionForm
             // 

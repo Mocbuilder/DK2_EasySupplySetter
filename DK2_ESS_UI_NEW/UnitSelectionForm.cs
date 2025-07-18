@@ -244,20 +244,62 @@ namespace DK2_ESS_UI_NEW
 
         public void AddToDefaultValues(DisplayObject displayObject)
         {
-            foreach (DisplayObject item in defaultValues)
+            var existing = defaultValues.FirstOrDefault(item => item.Name == displayObject.Name);
+
+            if (existing != null)
             {
-                if (item.Name == displayObject.Name && item.Properties != displayObject.Properties)
+                if (!DictionariesAreEqual(existing.Properties, displayObject.Properties))
                 {
-                    defaultValues.Remove(item);
+                    defaultValues.Remove(existing);
                     defaultValues.Add(displayObject);
                 }
             }
+            else
+            {
+                defaultValues.Add(displayObject);
+            }
         }
+
+        private bool DictionariesAreEqual(Dictionary<string, string> dict1, Dictionary<string, string> dict2)
+        {
+            if (dict1.Count != dict2.Count)
+                return false;
+
+            foreach (var kvp in dict1)
+            {
+                if (!dict2.TryGetValue(kvp.Key, out var value) || value != kvp.Value)
+                    return false;
+            }
+
+            return true;
+        }
+
 
         public DisplayObject InputToDisplayObject()
         {
-            DisplayObject result;
-             
+            DisplayObject result = new DisplayObject("Undefined", null, null);
+
+            if(treeView1.SelectedNode.Tag.GetType() == typeof(TrooperClass))
+            {
+                result = new DisplayObject(name_label.Text, typeof(TrooperClass), new Dictionary<string, string>
+                {
+                    {"Name", debugName_label.Text },
+                    {"NameUI", name_label.Text },
+                    {"NumSlots", value1_textBox.Text },
+                    {"Supply", value2_textBox.Text }
+                });
+            }
+            else
+            {
+                MessageBox.Show("This object type is not supported for modification.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+                //add other types when modifying them is implemented
+                return result;
+        }
+
+        private void reset_roundedButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
